@@ -20,12 +20,23 @@ obj/
 artifacts/
 TestResults/
 
+# Development certificates and local key material
 *.pfx
+*.pem
+*.key
 
+# Local configuration and secrets
 appsettings.Local.json
 appsettings.*.Local.json
+appsettings.Production.json
 secrets.json
 
+# Local database files
 *.db
 *.db-shm
 *.db-wal
+*.mdf
+*.ndf
+*.ldf
+*.bak
+*.bacpac
