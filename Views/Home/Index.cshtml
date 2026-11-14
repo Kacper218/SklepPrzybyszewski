@@ -1,8 +1,43 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Produkty";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Produkty</h1>
+
+@if (Model.Count == 0)
+{
+    <p class="text-muted">Brak kategorii w bazie danych.</p>
+}
+
+@foreach (var category in Model)
+{
+    <h2 class="h4 mt-4">@category.Name</h2>
+
+    @if (category.Products.Count == 0)
+    {
+        <p class="text-muted">Brak produktów w tej kategorii.</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Opis</th>
+                    <th class="text-end">Cena</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in category.Products.OrderBy(p => p.Name))
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td class="text-end">@product.Price.ToString("0.00") zł</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
