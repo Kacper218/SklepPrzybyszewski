@@ -36,6 +36,23 @@ namespace SklepPrzybyszewski.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Elektronika"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Książki"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Odzież"
+                        });
                 });
 
             modelBuilder.Entity("SklepPrzybyszewski.Models.Product", b =>
@@ -57,6 +74,7 @@ namespace SklepPrzybyszewski.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -64,6 +82,55 @@ namespace SklepPrzybyszewski.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Description = "Laptop 15,6 cala, 16 GB RAM",
+                            Name = "Laptop",
+                            Price = 3499.99m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            Description = "Słuchawki bezprzewodowe",
+                            Name = "Słuchawki",
+                            Price = 249.00m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 2,
+                            Description = "Adam Mickiewicz",
+                            Name = "Pan Tadeusz",
+                            Price = 29.90m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 2,
+                            Description = "Andrzej Sapkowski",
+                            Name = "Wiedźmin: Ostatnie życzenie",
+                            Price = 39.99m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 3,
+                            Description = "Bawełniana koszulka, rozmiar M",
+                            Name = "Koszulka",
+                            Price = 49.00m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 3,
+                            Name = "Bluza",
+                            Price = 129.00m
+                        });
                 });
 
             modelBuilder.Entity("SklepPrzybyszewski.Models.Product", b =>
